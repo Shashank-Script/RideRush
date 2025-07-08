@@ -1,19 +1,33 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RideRush_logo from "../assets/RideRush_logo.png";
+import axios from "axios";  
+import { RiderDataContext } from '../context/RiderContext';
+import { useContext } from 'react';
 
 const RiderLogin = () => {
   const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [riderData, setRiderData] = useState({});
-  
-    const submitHandler = (e) => {
+  const [password, setPassword] = useState("");
+    
+  const navigate = useNavigate();
+  const {rider, setRider} = useContext(RiderDataContext);
+
+    const submitHandler = async (e) => {
       e.preventDefault();
-      setRiderData({
+      const riderData = {
         email: email,
         password: password
-      })
+      }
+
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rider/login`, riderData);
+      if(response.status === 200){
+        const data = response.data
+        setRider(data.rider);
+        localStorage.setItem('token', data.token);
+        navigate("/riderhome")
+      }
+
       setEmail("");
       setPassword("");
     };
@@ -42,7 +56,7 @@ const RiderLogin = () => {
             placeholder="Password"
           />
           <button
-            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold"
+            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold cursor-pointer"
             type="submit"
           >
             Login

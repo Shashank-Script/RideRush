@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RideRush_logo from "../assets/RideRush_logo.png";
+import axios from "axios";
+import { RiderDataContext } from "../context/RiderContext";
+
 
 const RiderSignup = () => {
   const [firstName, setFirstName] = useState("");
@@ -13,14 +16,15 @@ const RiderSignup = () => {
   const [vehicleCapacity, setVehicleCapacity] = useState("");
   const [vehicleType, setVehicleType] = useState("");
 
-  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+  const { rider, setRider } = useContext(RiderDataContext);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({
+    const newRider = {
       fullname: {
-        firstName: firstName,
-        lastName: lastName,
+        firstname: firstName,
+        lastname: lastName,
       },
       email: email,
       password: password,
@@ -30,11 +34,24 @@ const RiderSignup = () => {
         capacity: vehicleCapacity,
         vehicleType: vehicleType,
       },
-    });
+    };
+
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rider/register`, newRider);
+    if(response.status === 201){
+      const data = response.data
+      setRider(data.rider);
+      localStorage.setItem('token', data.token);
+      navigate("/riderhome")
+    }
+    
     setEmail("");
     setPassword("");
     setFirstName("");
     setLastName("");
+    setVehicleCapacity("")
+    setVehicleColor("")
+    setVehiclePlateNo("")
+    setVehicleType("")
   };
 
   return (
@@ -130,10 +147,10 @@ const RiderSignup = () => {
             </select>
           </div>
           <button
-            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold"
+            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold cursor-pointer"
             type="submit"
           >
-            Sign Up
+            Create Account
           </button>
         </form>
         <p className="text-center">

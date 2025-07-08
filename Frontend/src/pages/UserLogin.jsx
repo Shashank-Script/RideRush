@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import RideRush_logo from "../assets/RideRush_logo.png";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
+import axios from "axios";
+import {UserDataContext} from "../context/UserContext.jsx";
 
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
 
-  const submitHandler = (e) => {
+  const navigate = useNavigate();
+  const {user, setUser} = useContext(UserDataContext);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({
+    const userData = {
       email: email,
       password: password
-    })
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/login`, userData);
+    if(response.status === 200){
+      const data = response.data
+      setUser(data.user);
+      localStorage.setItem('token', data.token);
+      navigate("/home")
+    }
+
     setEmail("");
     setPassword("");
   };
@@ -41,7 +54,7 @@ const UserLogin = () => {
             placeholder="Password"
           />
           <button
-            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold"
+            className="bg-black text-white mb-2 py-2 px-4 rounded w-full text-lg font-semibold cursor-pointer"
             type="submit"
           >
             Login
