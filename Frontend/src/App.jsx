@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import UserHome from "./pages/UserHome";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
-import RiderLogin from "./pages/RiderLogin";
-import RiderSignup from "./pages/RiderSignup";
-import Root from "./pages/Root";
 import UserProtectedWrapper from "./pages/UserProtectedWrapper";
 import UserLogout from "./pages/UserLogout";
+import Root from "./pages/Root";
+import RiderLogin from "./pages/RiderLogin";
+import RiderSignup from "./pages/RiderSignup";
 import RiderProtectedWrapper from "./pages/RiderProtectedWrapper";
 import RiderHome from "./pages/RiderHome";
 import RiderLogout from "./pages/RiderLogout";
@@ -25,7 +25,7 @@ const App = () => {
           path="/home"
           element={
             <UserProtectedWrapper>
-              <Home />
+              <UserHome />
             </UserProtectedWrapper>
           }
         />
