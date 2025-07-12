@@ -65,7 +65,7 @@ const RiderSignup = () => {
               required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="bg-[#eeeeee] w-1/2 rounded-lg py-2 px-4 border w-full text-lg placeholder:text-base"
+              className="bg-[#eeeeee] w-1/2 rounded-lg py-2 px-4 border text-lg placeholder:text-base"
               type="text"
               placeholder="Firstname"
             />
@@ -73,7 +73,7 @@ const RiderSignup = () => {
               required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="bg-[#eeeeee] w-1/2 rounded-lg py-2 px-4 border w-full text-lg placeholder:text-base"
+              className="bg-[#eeeeee] w-1/2 rounded-lg py-2 px-4 border text-lg placeholder:text-base"
               type="text"
               placeholder="Lastname"
             />
@@ -161,7 +161,7 @@ const RiderSignup = () => {
         </p>
       </div>
       <div>
-        <p className="text-[10px] leading-tight">
+        <p className="text-[10px] leading-tight mt-6">
           This site is protected by reCAPTCHA and the{" "}
           <span className="underline text-blue-600">Google Privacy Policy</span>{" "}
           and{" "}

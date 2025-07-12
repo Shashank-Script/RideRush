@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import UserHome from "./pages/UserHome";
 import UserLogin from "./pages/UserLogin";
@@ -11,6 +10,7 @@ import RiderSignup from "./pages/RiderSignup";
 import RiderProtectedWrapper from "./pages/RiderProtectedWrapper";
 import RiderHome from "./pages/RiderHome";
 import RiderLogout from "./pages/RiderLogout";
+import Riding from "./pages/Riding";
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/riderlogin" element={<RiderLogin />} />
         <Route path="/ridersignup" element={<RiderSignup />} />
+        <Route path="/riding" element={<Riding />} />
         <Route
           path="/home"
           element={
