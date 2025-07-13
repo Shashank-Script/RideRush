@@ -120,7 +120,7 @@ const UserHome = () => {
           <form onSubmit={(e) => submitHandler(e)}>
             <div className="line absolute h-16 w-1 top-[45%] left-10 bg-gray-900 rounded-full"></div>
             <input
-              className="bg-[#eeeeee] px-12 py-2 text-base rounded-l w-full mt-5"
+              className="bg-[#eeeeee] px-12 py-2 text-base rounded-lg w-full mt-5"
               type="text"
               value={pickUp}
               onChange={(e) => setpickUp(e.target.value)}

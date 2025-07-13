@@ -11,6 +11,7 @@ import RiderProtectedWrapper from "./pages/RiderProtectedWrapper";
 import RiderHome from "./pages/RiderHome";
 import RiderLogout from "./pages/RiderLogout";
 import Riding from "./pages/Riding";
+import RiderRiding from "./pages/RiderRiding";
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
         <Route path="/riderlogin" element={<RiderLogin />} />
         <Route path="/ridersignup" element={<RiderSignup />} />
         <Route path="/riding" element={<Riding />} />
+        <Route path="/rider-riding" element={<RiderRiding />} />
+
         <Route
           path="/home"
           element={
